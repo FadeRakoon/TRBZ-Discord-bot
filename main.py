@@ -19,11 +19,11 @@ async def on_message(message):
             await channel.send('copy')
 
 
-keep_alive()
+#keep_alive()
 token = os.environ.get("DISCORD_BOT_SECRET")
 client.run(token)
-token = os.environ.get('DISCORD_BOT_SECRET')
-client.run(token)
+#token = os.environ.get('DISCORD_BOT_SECRET')
+#client.run(token)
 
 #checks that message author isnt the same as the client (the bot) so that the bot doesnt respond to its own messages
 
