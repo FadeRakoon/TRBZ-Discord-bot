@@ -1,9 +1,11 @@
 import os
 import discord
-#from keep_alive import keep_alive
+from discord.ext import commands 
 
+## DO NOT DELETE
 client = discord.Client()
-
+bot = commands.Bot(command_prefix='$', case_insensitive=True)
+##DO NOT DELETE
 
 @client.event
 async def on_ready():
@@ -11,48 +13,24 @@ async def on_ready():
     print(client.user)
 
 
-@client.event
-async def on_message(message):
-    if message.author != client.user:
-        if message.content.startswith('$test'):
-            channel = message.channel
-            await channel.send('copy')
-
-@client.event
-async def on_message(message):
-    if message.content.startswith('$rem'):
-        channel = message.channel
-        await channel.send('Enter reminder name')
-
-        def check(m):
-            return m.content == '' and m.channel == channel
-
-        msg = await client.wait_for('message', check=check)
-        await channel.send('Hello {.author}!'.format(msg))
-
-@client.event
-async def on_message(message):
-    if message.content.startswith('$greet'):
-        channel = message.channel
-        await channel.send('Say hello!')
-
-        def check(m):
-            return m.content == 'hello' and m.channel == channel
-
-        msg = await client.wait_for('message', check=check)
-        await channel.send('Hello {.author}!'.format(msg))
 
 
 
-
+##DO NOT DELETE
 token = os.environ.get("DISCORD_BOT_SECRET")
 client.run(token)
+##DO NOT DELETE
+
+
+
+
+
+
+
+
 #keep_alive()
 #token = os.environ.get('DISCORD_BOT_SECRET')
 #client.run(token)
-
-
-
 
 #checks that message author isnt the same as the client (the bot) so that the bot doesnt respond to its own messages
 
