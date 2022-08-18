@@ -18,6 +18,19 @@ async def on_message(message):
             channel = message.channel
             await channel.send('copy')
 
+@client.event
+async def on_message(message):
+    if message.content.startswith('$rem'):
+        channel = message.channel
+        await channel.send('Enter reminder name')
+
+        def check(m):
+            return m.content == '' and m.channel == channel
+
+        msg = await client.wait_for('message', check=check)
+        await channel.send('Hello {.author}!'.format(msg))
+
+
 
 
 
