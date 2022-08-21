@@ -7,9 +7,16 @@ import logging
 
 ## DO NOT DELETE
 #defining a few things
-client = discord.Client()
-bot = commands.Bot(command_prefix='$', case_insensitive=True)
 
+#defining intents
+intents = discord.Intents.default()
+intents.typing = True
+intents.presences = True
+intents.message_content = True
+
+#client = discord.Client()
+bot = commands.Bot(command_prefix='$', case_insensitive=True, intents=intents)
+bot.config_token = os.environ.get("DISCORD_BOT_SECRET")
 logging.basicConfig(level=logging.INFO)
 
 
@@ -29,9 +36,8 @@ async def test(ctx):
     #await ctx.send(f"Hi <@(ctx.author.id)>!")
 
 #DO NOT DELETE
-token = os.environ.get("DISCORD_BOT_SECRET")
 #client.run(token)    
-bot.run(token)
+bot.run(bot.config_token)
 
     
 #checks that message author isnt the same as the client (the bot) so that the bot doesnt respond to its own messages
