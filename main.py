@@ -20,7 +20,16 @@ async def on_ready():
     print(f"=====\nLogged in as: {bot.user.name} : {bot.user.id}\n=====\nMy current prefix is: $\n=====")
     await bot.change_presence(activity=discord.Game(name=f"Hi, I am {bot.user.name}.\n Use $ to interact with me!")) #changes bots displayed 'activity' 
 
+@bot.command(name='test')
+async def _test(ctx):
+    """
+    A simple command which says hi to the author.
+    """
+    await ctx.sent(f"Hi {ctx.author.mention}")
+    # another way to do this is (user object).mention
+    #await ctx.send(f"Hi <@(ctx.author.id)>!")
 
+    
 
     
 #checks that message author isnt the same as the client (the bot) so that the bot doesnt respond to its own messages
