@@ -30,7 +30,8 @@ async def test(ctx):
 
 #DO NOT DELETE
 token = os.environ.get("DISCORD_BOT_SECRET")
-client.run(token)    
+#client.run(token)    
+bot.run(token)
 
     
 #checks that message author isnt the same as the client (the bot) so that the bot doesnt respond to its own messages
