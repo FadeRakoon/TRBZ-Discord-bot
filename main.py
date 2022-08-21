@@ -1,37 +1,27 @@
 import os
 import discord
 from discord.ext import commands 
+import logging
+
+
 
 ## DO NOT DELETE
+#defining a few things
 client = discord.Client()
 bot = commands.Bot(command_prefix='$', case_insensitive=True)
-##DO NOT DELETE
-
-@client.event
-async def on_ready():
-    print("I'm in")
-    print(client.user)
-
-
-
-
-
-##DO NOT DELETE
 token = os.environ.get("DISCORD_BOT_SECRET")
 client.run(token)
-##DO NOT DELETE
+logging.basicConfig(level=logging.INFO)
+
+
+
+@bot.event
+async def on_ready():
 
 
 
 
-
-
-
-
-#keep_alive()
-#token = os.environ.get('DISCORD_BOT_SECRET')
-#client.run(token)
-
+    
 #checks that message author isnt the same as the client (the bot) so that the bot doesnt respond to its own messages
 
 #@client.event
