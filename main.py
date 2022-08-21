@@ -9,8 +9,7 @@ import logging
 #defining a few things
 client = discord.Client()
 bot = commands.Bot(command_prefix='$', case_insensitive=True)
-token = os.environ.get("DISCORD_BOT_SECRET")
-client.run(token)
+
 logging.basicConfig(level=logging.INFO)
 
 
@@ -21,7 +20,7 @@ async def on_ready():
     await bot.change_presence(activity=discord.Game(name=f"Hi, I am {bot.user.name}.\n Use $ to interact with me!")) #changes bots displayed 'activity' 
 
 @bot.command(name='test')
-async def _test(ctx):
+async def test(ctx):
     """
     A simple command which says hi to the author.
     """
@@ -29,7 +28,9 @@ async def _test(ctx):
     # another way to do this is (user object).mention
     #await ctx.send(f"Hi <@(ctx.author.id)>!")
 
-    
+#DO NOT DELETE
+token = os.environ.get("DISCORD_BOT_SECRET")
+client.run(token)    
 
     
 #checks that message author isnt the same as the client (the bot) so that the bot doesnt respond to its own messages
