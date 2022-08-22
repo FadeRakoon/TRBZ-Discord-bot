@@ -29,7 +29,11 @@ async def on_ready():
 @bot.command(name='hi')
 async def hi(ctx):
     """
+    
     A simple command which says hi to the author.
+
+    Syntax: $hi 
+
     """
     await ctx.send(f"Hi {ctx.author.mention}")
     # another way to do this is (user object).mention
@@ -38,7 +42,11 @@ async def hi(ctx):
 @bot.command(name='echo', aliases=['repeat'])
 async def echo(ctx, *, message=None):
     """
+
     A simple command that repeats the users input back to them and deletes the original message
+
+    Syntax: $echo *insert message here*
+
     """
     message = message or "Please provide the message to be repeated"
     await ctx.message.delete()
