@@ -27,13 +27,25 @@ async def on_ready():
     await bot.change_presence(activity=discord.Game(name=f"Hi, I am {bot.user.name}.\n Use $ to interact with me!")) #changes bots displayed 'activity' 
 
 @bot.command(name='hi')
-async def _test(ctx):
+async def hi(ctx):
     """
     A simple command which says hi to the author.
     """
     await ctx.send(f"Hi {ctx.author.mention}")
     # another way to do this is (user object).mention
     #await ctx.send(f"Hi <@(ctx.author.id)>!")
+
+@bot.command(name='echo', aliases=['repeat'])
+async def echo(ctx, *, message=None):
+    """
+    A simple command that repeats the users input back to them and deletes the original message
+    """
+    message = message or "Please provide the message to be repeated"
+    await ctx.message.delete()
+    await ctx.send(message)
+
+
+
 
 
 #passes bot token to api to allow bot to login
