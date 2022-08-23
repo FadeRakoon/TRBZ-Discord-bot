@@ -52,7 +52,6 @@ async def on_command_error(ctx, error):
     
 
 @bot.command(name='hi')
-@commands.is_owner()
 async def hi(ctx):
     """
     A simple command which says hi to the author. || Syntax: $Hi 
