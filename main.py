@@ -27,6 +27,7 @@ async def on_ready():
     await bot.change_presence(activity=discord.Game(name=f"Hi, I am {bot.user.name}.\n Use $ to interact with me!")) #changes bots displayed 'activity' 
 
 
+
 #GLOBAL ERROR HANDLER
 @bot.event
 async def on_command_error(ctx, error):
@@ -51,6 +52,7 @@ async def on_command_error(ctx, error):
     raise error
     
 
+
 @bot.command(name='hi')
 async def hi(ctx):
     """
@@ -59,6 +61,8 @@ async def hi(ctx):
     await ctx.send(f"Hi {ctx.author.mention}")
     # another way to do this is (user object).mention
     #await ctx.send(f"Hi <@(ctx.author.id)>!")
+
+
 
 @bot.command(name='echo', aliases=['repeat'])
 async def echo(ctx, *, message=None):
