@@ -15,7 +15,7 @@ intents.presences = True
 intents.message_content = True
 
 #client = discord.Client()
-bot = commands.Bot(command_prefix='$', case_insensitive=True, intents=intents)
+bot = commands.Bot(command_prefix='$', case_insensitive=True, intents=intents) #owner_id=insert_discord_id_here
 bot.config_token = os.environ.get("DISCORD_BOT_SECRET")
 logging.basicConfig(level=logging.INFO)
 
@@ -26,7 +26,33 @@ async def on_ready():
     print(f"=====\nLogged in as: {bot.user.name} : {bot.user.id}\n=====\nMy current prefix is: $\n=====")
     await bot.change_presence(activity=discord.Game(name=f"Hi, I am {bot.user.name}.\n Use $ to interact with me!")) #changes bots displayed 'activity' 
 
+
+#GLOBAL ERROR HANDLER
+@bot.event
+async def on_command_error(ctx, error):
+    #ignore these errors
+    ignored = (commands.CommandNotFound, commands.UserInputError)
+    if isinstance(error, ignored):
+        return
+    
+    #begins error handling 
+    #(cooldowns on commands)
+    if isinstance(error, commands.CommandOnCooldown):
+        m, s = divmod(error.retry_after, 60)
+        h, m = divmod(m , 60)
+        if int(h) is 0 and int(m) is 0:
+            await ctx.send(f"You must wait {int(s)} seconds to use this command!")
+        elif int(h) is 0 and int(m) is not 0:
+            await ctx.send(f"You must wait {int(m)} minutes and {int(s)} seconds to use this command!")
+        else:
+            await ctx.send(f"You must wait {int(h)} hours, {int(m)} minutes and {int(s)} seconds to use this command!")
+    elif isinstance(error, commands.Checkfaliure):
+        await ctx.send("Hey! You Lack permission to use this command.")
+    raise error
+    
+
 @bot.command(name='hi')
+@commands.is_owner()
 async def hi(ctx):
     """
     A simple command which says hi to the author. || Syntax: $Hi 
